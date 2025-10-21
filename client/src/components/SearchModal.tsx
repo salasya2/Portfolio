@@ -1,61 +1,60 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Search, FileText, Briefcase, Code } from "lucide-react";
+import { Search, FileText, Briefcase, Code, Loader2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 
 interface SearchModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-const mockResults = [
-  {
-    id: "1",
-    title: "Mindful AI Framework Assistant",
-    excerpt: "Developed an AI Risk Repository using the Mindful AI Framework, improving risk classification accuracy...",
-    section: "Experience",
-    icon: Briefcase
-  },
-  {
-    id: "2",
-    title: "RAG System Development",
-    excerpt: "Engineered a Retrieval-Augmented Generation (RAG) system for academic course data, improving search efficiency by 40%...",
-    section: "Experience",
-    icon: Briefcase
-  },
-  {
-    id: "3",
-    title: "Student Loan Repayment System",
-    excerpt: "Full-stack loan platform with AI-powered features. Cut manual data entry 90% with automated column mapping...",
-    section: "Projects",
-    icon: Code
-  },
-  {
-    id: "4",
-    title: "Face Recognition Edge Computing",
-    excerpt: "Engineered edge-based face recognition pipeline on AWS IoT Greengrass with MTCNN detection...",
-    section: "Projects",
-    icon: Code
-  },
-  {
-    id: "5",
-    title: "Deep Learning & NLP Skills",
-    excerpt: "Expertise in Transformers, LangChain, Generative AI, and AI Agents...",
-    section: "Skills",
-    icon: FileText
-  }
-];
+interface SearchResult {
+  id: string;
+  title: string;
+  excerpt: string;
+  section: string;
+  score: number;
+}
+
+const sectionIcons: Record<string, any> = {
+  Experience: Briefcase,
+  Projects: Code,
+  Skills: FileText,
+  Education: FileText,
+  About: FileText,
+};
 
 export function SearchModal({ open, onOpenChange }: SearchModalProps) {
   const [query, setQuery] = useState("");
-  
-  const filteredResults = query.length > 0
-    ? mockResults.filter(result =>
-        result.title.toLowerCase().includes(query.toLowerCase()) ||
-        result.excerpt.toLowerCase().includes(query.toLowerCase())
-      )
-    : [];
+  const [results, setResults] = useState<SearchResult[]>([]);
+
+  const searchMutation = useMutation({
+    mutationFn: async (searchQuery: string) => {
+      const res = await apiRequest("POST", "/api/search", { query: searchQuery });
+      return res.json();
+    },
+    onSuccess: (data: SearchResult[]) => {
+      setResults(data);
+    },
+    onError: (error) => {
+      console.error("Search error:", error);
+      setResults([]);
+    },
+  });
+
+  useEffect(() => {
+    if (query.length > 2) {
+      const debounce = setTimeout(() => {
+        searchMutation.mutate(query);
+      }, 500);
+      return () => clearTimeout(debounce);
+    } else {
+      setResults([]);
+    }
+  }, [query]);
 
   const handleResultClick = (section: string) => {
     const sectionId = section.toLowerCase();
@@ -64,6 +63,7 @@ export function SearchModal({ open, onOpenChange }: SearchModalProps) {
       element.scrollIntoView({ behavior: "smooth" });
       onOpenChange(false);
       setQuery("");
+      setResults([]);
     }
   };
 
@@ -76,7 +76,7 @@ export function SearchModal({ open, onOpenChange }: SearchModalProps) {
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search portfolio..."
+              placeholder="Search portfolio using AI..."
               className="pl-10"
               autoFocus
               data-testid="input-search-query"
@@ -89,15 +89,21 @@ export function SearchModal({ open, onOpenChange }: SearchModalProps) {
             <div className="p-8 text-center text-muted-foreground" data-testid="text-search-prompt">
               <Search className="h-12 w-12 mx-auto mb-3 opacity-50" />
               <p>Start typing to search through experience, projects, and skills</p>
+              <p className="text-sm mt-2">Powered by AI semantic search</p>
             </div>
-          ) : filteredResults.length === 0 ? (
+          ) : searchMutation.isPending ? (
+            <div className="p-8 text-center text-muted-foreground">
+              <Loader2 className="h-8 w-8 mx-auto mb-3 animate-spin" />
+              <p>Searching...</p>
+            </div>
+          ) : results.length === 0 && query.length > 2 ? (
             <div className="p-8 text-center text-muted-foreground" data-testid="text-search-no-results">
               <p>No results found for "{query}"</p>
             </div>
           ) : (
             <div className="divide-y divide-border">
-              {filteredResults.map((result) => {
-                const Icon = result.icon;
+              {results.map((result) => {
+                const Icon = sectionIcons[result.section] || FileText;
                 return (
                   <button
                     key={result.id}
@@ -117,6 +123,9 @@ export function SearchModal({ open, onOpenChange }: SearchModalProps) {
                           <Badge variant="secondary" data-testid={`badge-result-${result.id}-section`}>
                             {result.section}
                           </Badge>
+                          <span className="text-xs text-muted-foreground ml-auto">
+                            {Math.round(result.score * 100)}% match
+                          </span>
                         </div>
                         <p className="text-sm text-muted-foreground line-clamp-2" data-testid={`text-result-${result.id}-excerpt`}>
                           {result.excerpt}

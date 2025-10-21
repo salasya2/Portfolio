@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { useToast } from "@/hooks/use-toast";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import { Clock, Calendar as CalendarIcon } from "lucide-react";
 
 interface AppointmentBookingProps {
@@ -22,6 +24,7 @@ const timeSlots = [
 
 export function AppointmentBooking({ open, onOpenChange }: AppointmentBookingProps) {
   const { toast } = useToast();
+  const queryClient = useQueryClient();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [formData, setFormData] = useState({
@@ -29,6 +32,30 @@ export function AppointmentBooking({ open, onOpenChange }: AppointmentBookingPro
     email: "",
     phone: "",
     purpose: ""
+  });
+
+  const createAppointmentMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const res = await apiRequest("POST", "/api/appointments", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/appointments"] });
+      toast({
+        title: "Appointment Booked!",
+        description: `Your appointment has been scheduled for ${selectedDate?.toLocaleDateString()} at ${selectedTime}.`,
+      });
+      setFormData({ name: "", email: "", phone: "", purpose: "" });
+      setSelectedTime("");
+      onOpenChange(false);
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Booking Failed",
+        description: error.message || "Failed to book appointment. Please try again.",
+        variant: "destructive",
+      });
+    },
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -42,15 +69,11 @@ export function AppointmentBooking({ open, onOpenChange }: AppointmentBookingPro
       return;
     }
     
-    console.log("Appointment booked:", { ...formData, date: selectedDate, time: selectedTime });
-    toast({
-      title: "Appointment Booked!",
-      description: `Your appointment has been scheduled for ${selectedDate.toLocaleDateString()} at ${selectedTime}.`,
+    createAppointmentMutation.mutate({
+      ...formData,
+      date: selectedDate.toISOString(),
+      time: selectedTime,
     });
-    
-    setFormData({ name: "", email: "", phone: "", purpose: "" });
-    setSelectedTime("");
-    onOpenChange(false);
   };
 
   return (
@@ -164,8 +187,12 @@ export function AppointmentBooking({ open, onOpenChange }: AppointmentBookingPro
             >
               Cancel
             </Button>
-            <Button type="submit" data-testid="button-booking-confirm">
-              Confirm Appointment
+            <Button 
+              type="submit" 
+              disabled={createAppointmentMutation.isPending}
+              data-testid="button-booking-confirm"
+            >
+              {createAppointmentMutation.isPending ? "Booking..." : "Confirm Appointment"}
             </Button>
           </div>
         </form>

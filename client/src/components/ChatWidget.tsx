@@ -1,52 +1,84 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { MessageCircle, X, Send } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 interface Message {
   id: string;
   text: string;
   sender: "user" | "support";
-  timestamp: Date;
+  createdAt: Date;
 }
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      text: "Hello! I'm here to help answer any questions about Sai Teja's work and experience. Feel free to ask me anything!",
-      sender: "support",
-      timestamp: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState("");
+  const [ws, setWs] = useState<WebSocket | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const wsUrl = `${protocol}//${window.location.host}/ws`;
+    const websocket = new WebSocket(wsUrl);
+
+    websocket.onopen = () => {
+      console.log("Connected to chat server");
+    };
+
+    websocket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      
+      if (data.type === "history") {
+        setMessages(data.messages.map((msg: any) => ({
+          ...msg,
+          createdAt: new Date(msg.createdAt),
+        })));
+      } else if (data.type === "new_message") {
+        setMessages((prev) => [...prev, {
+          ...data.message,
+          createdAt: new Date(data.message.createdAt),
+        }]);
+      }
+    };
+
+    websocket.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    websocket.onclose = () => {
+      console.log("Disconnected from chat server");
+    };
+
+    setWs(websocket);
+
+    return () => {
+      websocket.close();
+    };
+  }, [isOpen]);
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputMessage.trim()) return;
+    if (!inputMessage.trim() || !ws) return;
 
-    const userMessage: Message = {
-      id: Date.now().toString(),
+    ws.send(JSON.stringify({
+      type: "chat_message",
       text: inputMessage,
       sender: "user",
-      timestamp: new Date()
-    };
+    }));
 
-    setMessages([...messages, userMessage]);
     setInputMessage("");
-
-    setTimeout(() => {
-      const supportMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: "Thank you for your message! This is a demo chat widget. In the full implementation, this would connect to a live support system.",
-        sender: "support",
-        timestamp: new Date()
-      };
-      setMessages((prev) => [...prev, supportMessage]);
-    }, 1000);
   };
 
   return (
@@ -87,6 +119,11 @@ export function ChatWidget() {
           </div>
 
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            {messages.length === 0 && (
+              <div className="text-center text-muted-foreground py-8">
+                <p>Welcome! Send a message to start chatting.</p>
+              </div>
+            )}
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -102,7 +139,7 @@ export function ChatWidget() {
                 >
                   <p className="text-sm">{message.text}</p>
                   <p className="text-xs opacity-70 mt-1">
-                    {message.timestamp.toLocaleTimeString([], {
+                    {new Date(message.createdAt).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit"
                     })}
@@ -110,6 +147,7 @@ export function ChatWidget() {
                 </div>
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
 
           <form onSubmit={handleSendMessage} className="p-4 border-t border-border">
