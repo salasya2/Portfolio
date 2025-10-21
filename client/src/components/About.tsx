@@ -1,6 +1,4 @@
 import { Card } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import profileImage from "@assets/generated_images/Professional_portfolio_headshot_34912d2a.png";
 
 export function About() {
   return (
@@ -8,14 +6,7 @@ export function About() {
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl font-bold mb-8" data-testid="text-about-title">About Me</h2>
         <Card className="p-8">
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="flex-shrink-0">
-              <Avatar className="h-48 w-48">
-                <AvatarImage src={profileImage} alt="Sai Teja Alasyam" />
-                <AvatarFallback>ST</AvatarFallback>
-              </Avatar>
-            </div>
-            <div className="space-y-4 flex-1">
+          <div className="space-y-4">
               <div>
                 <h3 className="text-2xl font-semibold mb-2" data-testid="text-about-name">
                   Sai Teja Alasyam
@@ -56,7 +47,6 @@ export function About() {
                   generative AI, NLP, and building production-ready AI systems at scale.
                 </p>
               </div>
-            </div>
           </div>
         </Card>
       </div>
