@@ -3,7 +3,6 @@ import { createServer, type Server } from "http";
 import { WebSocketServer, WebSocket } from "ws";
 import { storage } from "./storage";
 import { insertAppointmentSchema, insertChatMessageSchema } from "@shared/schema";
-import { semanticSearch } from "./rag";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Appointment endpoints
@@ -48,21 +47,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // RAG search endpoint
-  app.post("/api/search", async (req, res) => {
-    try {
-      const { query } = req.body;
-      if (!query || typeof query !== "string") {
-        return res.status(400).json({ error: "Query is required" });
-      }
-
-      const results = await semanticSearch(query);
-      res.json(results);
-    } catch (error: any) {
-      console.error("Search error:", error);
-      res.status(500).json({ error: "Search failed" });
-    }
-  });
 
   const httpServer = createServer(app);
 

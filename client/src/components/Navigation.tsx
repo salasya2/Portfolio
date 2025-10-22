@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
-import { Search, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
-interface NavigationProps {
-  onSearchOpen: () => void;
-}
-
-export function Navigation({ onSearchOpen }: NavigationProps) {
+export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -56,14 +52,6 @@ export function Navigation({ onSearchOpen }: NavigationProps) {
           </div>
 
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onSearchOpen}
-              data-testid="button-search-open"
-            >
-              <Search className="h-5 w-5" />
-            </Button>
             <ThemeToggle />
             <Button
               variant="ghost"

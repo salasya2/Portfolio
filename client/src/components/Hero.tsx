@@ -1,13 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Search, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { SiPython, SiAmazon, SiKubernetes, SiDocker, SiReact, SiTensorflow } from "react-icons/si";
 
-interface HeroProps {
-  onSearchOpen: () => void;
-}
-
-export function Hero({ onSearchOpen }: HeroProps) {
+export function Hero() {
   return (
     <section
       id="hero"
@@ -57,17 +53,6 @@ export function Hero({ onSearchOpen }: HeroProps) {
               </Button>
             </div>
 
-            <div className="relative max-w-xl">
-              <Button
-                variant="outline"
-                className="w-full justify-start text-muted-foreground hover:text-foreground"
-                onClick={onSearchOpen}
-                data-testid="button-hero-search"
-              >
-                <Search className="h-4 w-4 mr-2" />
-                Search my portfolio...
-              </Button>
-            </div>
           </div>
 
           <div className="lg:col-span-2">

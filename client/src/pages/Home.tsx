@@ -8,15 +8,13 @@ import { Skills } from "@/components/Skills";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { ChatWidget } from "@/components/ChatWidget";
-import { SearchModal } from "@/components/SearchModal";
 
 export default function Home() {
-  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
-      <Navigation onSearchOpen={() => setSearchOpen(true)} />
-      <Hero onSearchOpen={() => setSearchOpen(true)} />
+      <Navigation />
+      <Hero />
       <About />
       <Experience />
       <Projects />
@@ -24,7 +22,6 @@ export default function Home() {
       <Contact />
       <Footer />
       <ChatWidget />
-      <SearchModal open={searchOpen} onOpenChange={setSearchOpen} />
     </div>
   );
 }
