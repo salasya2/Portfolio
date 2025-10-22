@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Search, Calendar, Github, Linkedin, Mail } from "lucide-react";
+import { Search, Github, Linkedin, Mail } from "lucide-react";
 import { SiPython, SiAmazon, SiKubernetes, SiDocker, SiReact, SiTensorflow } from "react-icons/si";
 
 interface HeroProps {
   onSearchOpen: () => void;
-  onBookingOpen: () => void;
 }
 
-export function Hero({ onSearchOpen, onBookingOpen }: HeroProps) {
+export function Hero({ onSearchOpen }: HeroProps) {
   return (
     <section
       id="hero"
@@ -44,18 +43,14 @@ export function Hero({ onSearchOpen, onBookingOpen }: HeroProps) {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <Button onClick={onBookingOpen} size="lg" data-testid="button-hero-book">
-                <Calendar className="h-4 w-4 mr-2" />
-                Schedule a Call
-              </Button>
               <Button variant="outline" size="lg" asChild data-testid="link-github">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/salasya2" target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 w-4 mr-2" />
                   GitHub
                 </a>
               </Button>
               <Button variant="outline" size="lg" asChild data-testid="link-linkedin">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/alasyam-sai-teja-845446193/" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-4 w-4 mr-2" />
                   LinkedIn
                 </a>

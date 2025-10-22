@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
-import { Search, Menu, X, Calendar } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 
 interface NavigationProps {
   onSearchOpen: () => void;
-  onBookingOpen: () => void;
 }
 
-export function Navigation({ onSearchOpen, onBookingOpen }: NavigationProps) {
+export function Navigation({ onSearchOpen }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -67,14 +66,6 @@ export function Navigation({ onSearchOpen, onBookingOpen }: NavigationProps) {
             </Button>
             <ThemeToggle />
             <Button
-              onClick={onBookingOpen}
-              className="hidden sm:flex"
-              data-testid="button-book-appointment"
-            >
-              <Calendar className="h-4 w-4 mr-2" />
-              Book Appointment
-            </Button>
-            <Button
               variant="ghost"
               size="icon"
               className="md:hidden"
@@ -101,17 +92,6 @@ export function Navigation({ onSearchOpen, onBookingOpen }: NavigationProps) {
                 {link.label}
               </Button>
             ))}
-            <Button
-              className="w-full"
-              onClick={() => {
-                onBookingOpen();
-                setMobileMenuOpen(false);
-              }}
-              data-testid="button-book-appointment-mobile"
-            >
-              <Calendar className="h-4 w-4 mr-2" />
-              Book Appointment
-            </Button>
           </div>
         </div>
       )}

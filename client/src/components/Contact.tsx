@@ -7,11 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Send, Calendar, Github, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-interface ContactProps {
-  onBookingOpen: () => void;
-}
-
-export function Contact({ onBookingOpen }: ContactProps) {
+export function Contact() {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
@@ -128,35 +124,18 @@ export function Contact({ onBookingOpen }: ContactProps) {
 
               <div className="flex gap-3 mt-6 pt-6 border-t border-border">
                 <Button variant="outline" size="icon" asChild data-testid="link-contact-github">
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/salasya2" target="_blank" rel="noopener noreferrer">
                     <Github className="h-5 w-5" />
                   </a>
                 </Button>
                 <Button variant="outline" size="icon" asChild data-testid="link-contact-linkedin">
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.linkedin.com/in/alasyam-sai-teja-845446193/" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="h-5 w-5" />
                   </a>
                 </Button>
               </div>
             </Card>
 
-            <Card className="p-8 bg-primary/5 border-primary/20">
-              <div className="text-center space-y-4">
-                <Calendar className="h-12 w-12 text-primary mx-auto" />
-                <div>
-                  <h3 className="text-xl font-semibold mb-2" data-testid="text-book-call-title">
-                    Prefer to schedule a call?
-                  </h3>
-                  <p className="text-muted-foreground mb-4">
-                    Book a time that works best for you
-                  </p>
-                  <Button onClick={onBookingOpen} size="lg" className="w-full" data-testid="button-contact-book">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    Schedule Appointment
-                  </Button>
-                </div>
-              </div>
-            </Card>
           </div>
         </div>
       </div>

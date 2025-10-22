@@ -57,6 +57,46 @@ const portfolioContent = [
     Achieved a fully functional end-to-end pipeline (Kafka → Neo4j → Analytics) validated through grading scripts, reducing manual setup effort by >40%.`,
   },
   {
+    id: "project-4",
+    section: "Projects",
+    title: "Extension of WebArena",
+    content: `Extension of WebArena (Nov 2024 – Dec 2024). 
+    Enhanced WebArena tasks by incorporating deontic logic and refining prompt structures to improve model performance in the environment. 
+    Developed a dataset of 25 deontological tasks and evaluated them using WebArena LLMs. 
+    Validated task complexity through assessments with ChatGPT. 
+    Improved model reasoning capabilities in complex web-based environments through systematic prompt engineering and evaluation.`,
+  },
+  {
+    id: "project-5",
+    section: "Projects",
+    title: "LLM-based Phishing Detection",
+    content: `LLM-based Phishing Detection (Feb 2025 – Apr 2025). 
+    Designed a multi-agent architecture utilizing the LLaMA-3.3-49B Nemotron model for real-time phishing website detection. 
+    Implemented rule-based evaluation mechanisms to identify phishing indicators from webpage content and structure. 
+    Built and deployed a browser extension integrated with the detection pipeline for end-user protection. 
+    Led collaboration with peers to design evaluation strategies and effectively communicated results through presentations and documentation.`,
+  },
+  {
+    id: "project-6",
+    section: "Projects",
+    title: "Evaluating Mathematical Reasoning of LLMs",
+    content: `Evaluating Mathematical Reasoning of LLMs (Oct 2024 – Dec 2024). 
+    Evaluated reasoning abilities of open-source instruction-tuned models (Llama-3.1-8B-instruct, Llama-3.2-3B, Gemma-2-9B-it, Mistral-7B-instruct) on the GSM8k dataset. 
+    Designed a multi-agent framework and assessed performance across four dimensions: Accuracy, Correct Reasoning, Correct Answer, and Joint Correctness. 
+    Demonstrated that multi-agent setups uncovered untapped reasoning ability, achieving up to 13% Correct Reasoning, even in cases where answers were incorrect. 
+    Collaborated in a research group, contributing to methodology discussions and refining experiment design while practicing clear scientific communication.`,
+  },
+  {
+    id: "project-7",
+    section: "Projects",
+    title: "Specialized Rich Text Document RAG for arXiv Papers",
+    content: `Specialized Rich Text Document RAG for arXiv Papers (Oct 2024 – Dec 2024). 
+    Built a Retrieval-Augmented Generation (RAG) system to process multimodal user queries over scientific papers. 
+    Utilized AWS DynamoDB & S3 for storage and retrieval of scraped research papers. 
+    Established a baseline method for handling complex scientific document structures and multimodal queries. 
+    Implemented efficient retrieval mechanisms for large-scale scientific literature processing.`,
+  },
+  {
     id: "skills",
     section: "Skills",
     title: "Technical Skills",

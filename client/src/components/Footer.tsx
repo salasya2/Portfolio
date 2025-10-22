@@ -52,12 +52,12 @@ export function Footer() {
             <h3 className="text-lg font-semibold" data-testid="text-footer-connect-title">Connect</h3>
             <div className="flex gap-2">
               <Button variant="outline" size="icon" asChild data-testid="link-footer-github">
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/salasya2" target="_blank" rel="noopener noreferrer">
                   <Github className="h-4 w-4" />
                 </a>
               </Button>
               <Button variant="outline" size="icon" asChild data-testid="link-footer-linkedin">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/in/alasyam-sai-teja-845446193/" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-4 w-4" />
                 </a>
               </Button>
