@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sai Teja Alasyam | AI and Software Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Sai Teja Alasyam, AI and Software Engineer building LLM systems, multimodal workflows, agentic applications, and full-stack products."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#top">STA</a>
+        <nav class="nav">
+          <a href="#work">Work</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Applied AI • LLM Systems • Full-Stack Products</p>
+            <h1>
+              Sai Teja Alasyam builds AI products that move from prototype to
+              real user workflow.
+            </h1>
+            <p class="lede">
+              AI and software engineer focused on agentic applications,
+              multimodal systems, retrieval pipelines, and full-stack product
+              delivery. Current work spans human-in-loop research tooling,
+              voice-first AI interfaces, and production-minded deployment.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#work">See Selected Work</a>
+              <a class="button button-secondary" href="mailto:saitejaalasyam@gmail.com">Get In Touch</a>
+            </div>
+            <ul class="hero-facts">
+              <li>Tempe, Arizona</li>
+              <li>Open to full-time AI / ML / software roles</li>
+              <li>MS in Computer Science, Arizona State University</li>
+            </ul>
+          </div>
+
+          <aside class="hero-panel">
+            <div class="panel-card panel-glow">
+              <span class="panel-label">Now Building</span>
+              <h2>LLM systems with measurable behavior</h2>
+              <p>
+                Latest work includes NL-to-SQL agents, semantic caching,
+                multimodal trajectory prediction, and AI annotation systems.
+              </p>
+            </div>
+            <div class="metric-grid">
+              <article class="metric-card">
+                <span class="metric-value">90%</span>
+                <span class="metric-label">schema context reduction</span>
+              </article>
+              <article class="metric-card">
+                <span class="metric-value">&lt;50ms</span>
+                <span class="metric-label">repeat-query latency</span>
+              </article>
+              <article class="metric-card">
+                <span class="metric-value">2,000</span>
+                <span class="metric-label">AI incidents labeled</span>
+              </article>
+              <article class="metric-card">
+                <span class="metric-value">20M+</span>
+                <span class="metric-label">graph records processed</span>
+              </article>
+            </div>
+          </aside>
+        </section>
+
+        <section class="section" id="work">
+          <div class="section-heading">
+            <p class="eyebrow">Selected Work</p>
+            <h2>Shipped systems, not just experiments</h2>
+          </div>
+
+          <div class="project-grid">
+            <article class="project-card project-featured">
+              <div class="project-topline">
+                <span class="chip chip-accent">Featured</span>
+                <a href="https://github.com/salasya2/ChatDB" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+              <h3>ChatDB</h3>
+              <p class="project-summary">
+                Voice-to-SQL platform built for natural-language querying across
+                large schemas with fast follow-up response paths.
+              </p>
+              <ul class="project-points">
+                <li>Reduced schema context 90% with 3-stage NL-to-SQL agent flow: IR, SS, CG.</li>
+                <li>Cut repeat-query latency to under 50ms using Redis semantic cache plus MiniLM embeddings.</li>
+                <li>Shipped voice-first workflow with Whisper large v3, 2 Docker images, Kubernetes deployment, 0 plaintext secrets.</li>
+              </ul>
+              <div class="stack-row">
+                <span>Llama 3.3 70B via Groq</span>
+                <span>Whisper large v3</span>
+                <span>Redis</span>
+                <span>Kubernetes</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-topline">
+                <span class="chip">RAG Product</span>
+                <a href="https://github.com/salasya2/AnimeRecommender-llmops" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+              <h3>Anime Recommendation System</h3>
+              <p class="project-summary">
+                Natural-language anime discovery experience built around
+                retrieval, explanation, and production-style deployment.
+              </p>
+              <ul class="project-points">
+                <li>Returned 3 explainable recommendations per query across 269-title corpus.</li>
+                <li>Eliminated vector-store rebuilds during session startup with persisted embeddings and cached init path.</li>
+                <li>Moved from local prototype to live Kubernetes-backed service with Dockerized delivery.</li>
+              </ul>
+              <div class="stack-row">
+                <span>Llama 3.1 8B via Groq</span>
+                <span>ChromaDB</span>
+                <span>Streamlit</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-topline">
+                <span class="chip">Full-Stack AI</span>
+                <a href="https://github.com/salasya2/Student-Loan-Repayment-System" target="_blank" rel="noreferrer">GitHub</a>
+              </div>
+              <h3>Student Loan Repayment System</h3>
+              <p class="project-summary">
+                Employee-facing benefits platform combining AI-assisted data
+                onboarding, analytics, and payoff planning.
+              </p>
+              <ul class="project-points">
+                <li>Shipped 3 core workflows: admin analytics, employee enrollment, payoff planning.</li>
+                <li>Cut manual data entry 90% using GPT-4-assisted CSV mapping and validation pipeline.</li>
+                <li>Improved responsiveness across 2 portals with async APIs, lazy-loaded views, and memoized dashboards.</li>
+              </ul>
+              <div class="stack-row">
+                <span>GPT-4</span>
+                <span>React</span>
+                <span>FastAPI</span>
+                <span>MongoDB</span>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-topline">
+                <span class="chip">Distributed Data</span>
+              </div>
+              <h3>Graph Processing & Streaming Analytics</h3>
+              <p class="project-summary">
+                Reproducible analytics platform for large-scale trip data using
+                graph processing and stream ingestion.
+              </p>
+              <ul class="project-points">
+                <li>Built analytics workflow over 20M+ NYC Yellow Cab trips for near-real-time ingestion and querying.</li>
+                <li>Surfaced high-traffic nodes and traversal paths with PageRank and breadth-first search.</li>
+                <li>Reduced setup effort 40%+ with containerized stack and reproducible Kubernetes deployment.</li>
+              </ul>
+              <div class="stack-row">
+                <span>Neo4j</span>
+                <span>Kafka</span>
+                <span>Kubernetes</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section split-section" id="experience">
+          <div class="section-heading">
+            <p class="eyebrow">Experience</p>
+            <h2>Research grounded in production thinking</h2>
+          </div>
+
+          <div class="timeline-card">
+            <div class="timeline-header">
+              <div>
+                <h3>Research Aide</h3>
+                <p>W. P. Carey School of Business, Arizona State University</p>
+              </div>
+              <span>Oct 2024 – Dec 2025</span>
+            </div>
+            <ul class="timeline-points">
+              <li>Reduced manual labeling overhead 80% across 2,000 AI incidents via Streamlit annotation platform.</li>
+              <li>Cut multi-agent runtime 90% via hierarchical human-in-loop architecture.</li>
+              <li>Improved multimodal trajectory benchmark from 7.52 to 7.36 with Gemma-2-9B plus LoRA pipeline on Waymo data.</li>
+              <li>Migrated LLM experimentation from Colab to AWS SageMaker Studio, creating shared scalable environment.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section" id="past-projects">
+          <div class="section-heading">
+            <p class="eyebrow">Past Projects</p>
+            <h2>Earlier systems that shaped current AI engineering depth</h2>
+          </div>
+
+          <div class="project-grid past-projects-grid">
+            <article class="project-card compact-card">
+              <div class="project-topline">
+                <span class="chip">Edge AI</span>
+              </div>
+              <h3>Face Recognition Edge Computing System</h3>
+              <p class="project-summary">
+                Edge inference pipeline using AWS Greengrass, SQS, and Lambda
+                for low-latency face recognition close to device boundary.
+              </p>
+              <ul class="project-points">
+                <li>Reduced cloud-only dependency by pushing inference closer to edge runtime.</li>
+                <li>Improved request throughput 30% with queue-based request-response workflow.</li>
+                <li>Reduced unnecessary cloud calls 15% by handling no-face cases locally.</li>
+              </ul>
+            </article>
+
+            <article class="project-card compact-card">
+              <div class="project-topline">
+                <span class="chip">Trust & Safety</span>
+              </div>
+              <h3>Bias Detection in LLMs</h3>
+              <p class="project-summary">
+                Evaluation-focused work exploring behavioral bias and model
+                safety signals in large language models.
+              </p>
+              <ul class="project-points">
+                <li>Analyzed model behavior through structured bias and phishing-related prompts.</li>
+                <li>Expanded evaluation scope beyond generation quality into trust and safety behavior.</li>
+                <li>Built stronger intuition for failure analysis in LLM-driven user experiences.</li>
+              </ul>
+            </article>
+
+            <article class="project-card compact-card">
+              <div class="project-topline">
+                <span class="chip">LLM Evaluation</span>
+              </div>
+              <h3>Mathematical Reasoning Evaluation</h3>
+              <p class="project-summary">
+                Benchmarking work focused on reasoning quality rather than
+                surface fluency in large language models.
+              </p>
+              <ul class="project-points">
+                <li>Evaluated mathematical reasoning behavior with benchmark-style assessment workflows.</li>
+                <li>Focused comparison on reasoning quality rather than polished text output.</li>
+                <li>Strengthened evaluation mindset used later in applied LLM product work.</li>
+              </ul>
+            </article>
+
+            <article class="project-card compact-card">
+              <div class="project-topline">
+                <span class="chip">Agents</span>
+              </div>
+              <h3>WebArena Agentic Reasoning Work</h3>
+              <p class="project-summary">
+                Browser-interaction project aligned with agent planning,
+                tool-use, and task-oriented reasoning workflows.
+              </p>
+              <ul class="project-points">
+                <li>Extended agentic web-task workflows involving browser interaction and decision steps.</li>
+                <li>Worked on reasoning patterns closer to real user task execution than static prompting.</li>
+                <li>Built foundations later reflected in multi-agent and voice-to-SQL systems.</li>
+              </ul>
+            </article>
+
+            <article class="project-card compact-card">
+              <div class="project-topline">
+                <span class="chip">Domain RAG</span>
+              </div>
+              <h3>RAG System for arXiv Papers</h3>
+              <p class="project-summary">
+                Domain-specific retrieval system for academic content with focus
+                on search quality and knowledge access.
+              </p>
+              <ul class="project-points">
+                <li>Built retrieval workflow for paper-centric question answering over technical content.</li>
+                <li>Applied search and ranking ideas to high-context academic documents.</li>
+                <li>Reinforced retrieval design patterns later reused in recommendation and SQL systems.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section skills-section" id="skills">
+          <div class="section-heading">
+            <p class="eyebrow">Capabilities</p>
+            <h2>Range across modeling, systems, and product layers</h2>
+          </div>
+
+          <div class="skills-grid">
+            <article class="skill-block">
+              <h3>LLM Systems</h3>
+              <p>GPT-4, Llama 3.3 70B, Llama 3.1 8B, Gemma-2-9B, Whisper large v3, RAG, prompt engineering, semantic caching, agentic flows.</p>
+            </article>
+            <article class="skill-block">
+              <h3>ML & Research</h3>
+              <p>PyTorch, Transformers, LoRA fine-tuning, multimodal modeling, evaluation, NLP, trajectory forecasting, human-in-the-loop workflows.</p>
+            </article>
+            <article class="skill-block">
+              <h3>Product Engineering</h3>
+              <p>FastAPI, React, Vite, Streamlit, LangChain, API design, analytics dashboards, conversational UX, full-stack delivery.</p>
+            </article>
+            <article class="skill-block">
+              <h3>Data & Infra</h3>
+              <p>Redis, ChromaDB, MongoDB, Neo4j, Kafka, Docker, Kubernetes, Nginx, AWS SageMaker, Git, cloud deployment.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section insight-section">
+          <div class="insight-card">
+            <p class="eyebrow">What Teams Get</p>
+            <h2>Engineer who bridges research experimentation with usable product delivery</h2>
+            <p>
+              Strong fit for entry-level AI engineer, ML engineer, LLM engineer,
+              software engineer, and research engineer roles where model quality,
+              deployment constraints, and user workflow all matter.
+            </p>
+          </div>
+        </section>
+
+        <section class="section contact-section" id="contact">
+          <div class="section-heading">
+            <p class="eyebrow">Contact</p>
+            <h2>Open to building applied AI systems with ambitious teams</h2>
+          </div>
+
+          <div class="contact-card">
+            <div>
+              <p class="contact-copy">
+                Based in Tempe, Arizona. Open to relocation for right role. Will
+                require visa sponsorship.
+              </p>
+            </div>
+            <div class="contact-links">
+              <a class="button button-primary" href="mailto:saitejaalasyam@gmail.com">saitejaalasyam@gmail.com</a>
+              <a class="button button-secondary" href="https://github.com/salasya2" target="_blank" rel="noreferrer">GitHub</a>
+              <a class="button button-secondary" href="https://www.linkedin.com/in/alasyam-sai-teja-845446193/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
